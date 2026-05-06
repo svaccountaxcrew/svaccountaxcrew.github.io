@@ -1,0 +1,181 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 520px;
+    background: white;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+h1 {
+    color: #1e40af;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.form-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 14px;
+}
+
+.form-tabs a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-tabs a:hover {
+    color: #1e40af;
+}
+
+.precheck {
+    background: #f6f9ff;
+    border: 1px solid #dbe7f7;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+}
+
+.precheck h3 {
+    color: #1e40af;
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.precheck ul {
+    margin: 0 0 8px 18px;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.precheck a {
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.helper-text {
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 12px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #111;
+}
+
+.checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+
+.checkbox input {
+    width: auto;
+}
+
+.checkbox input[type="checkbox"] {
+    accent-color: #1e40af; /* blue theme */
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1c3aa9;
+}
+
+.status.new {
+    color: orange;
+    font-weight: bold;
+}
+
+.status.contacted {
+    color: blue;
+    font-weight: bold;
+}
+
+.status.converted {
+    color: green;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .container {
+        margin: 20px 12px;
+        padding: 18px;
+        max-width: none;
+    }
+
+    h1 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .form-tabs {
+        gap: 8px;
+    }
+
+    .form-tabs a {
+        font-size: 13px;
+    }
+
+    input, select {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 12px;
+    }
+}

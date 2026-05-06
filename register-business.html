@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Your Business</title>
+    <link rel="stylesheet" href="business.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Register Your Business</h1>
+    <p class="subtitle">
+        Get expert help for GST, Tax Filing & Compliance
+    </p>
+    <div class="form-tabs">
+        <a href="#before-submit">Before Submit</a>
+        <a href="#business-details">Business Details</a>
+        <a href="#service-details">Services</a>
+        <a href="#contact-details">Contact Details</a>
+        <a href="document-checklist.html">Checklist Center</a>
+    </div>
+
+    <div class="precheck" id="before-submit">
+        <h3>Before You Submit</h3>
+        <ul>
+            <li>Keep business and owner details ready.</li>
+            <li>Use active email and mobile for communication.</li>
+            <li>Select at least one service required.</li>
+            <li>Review all entries once before submit.</li>
+        </ul>
+        <a href="document-checklist.html">Open Document Checklist Center</a>
+    </div>
+
+    <form id="business-form">
+        <div id="business-details"></div>
+        <input type="text" name="business_name" placeholder="Business Name" required>
+
+        <select name="business_type" required>
+            <option value="">Select Business Type</option>
+            <option>Proprietorship</option>
+            <option>Partnership</option>
+            <option>LLP</option>
+            <option>Private Limited</option>
+            <option>Startup</option>
+        </select>
+        <small class="helper-text">Tip: Choose the current legal structure or the one you plan to register.</small>
+
+        <div id="service-details"></div>
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="GST Registration">
+            GST Registration
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="GST Filing">
+            GST Filing
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Income Tax Filing">
+            Income Tax Filing
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Tax Planning">
+            Tax Planning
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="ROC Compliances">
+            ROC Compliances
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Accounting & Bookkeeping">
+            Accounting & Bookkeeping
+        </label>
+
+        <div id="contact-details"></div>
+        <input type="text" name="owner_name" placeholder="Owner / Authorized Person" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Mobile Number" required>
+        <input type="text" name="city" placeholder="City">
+
+        <button type="submit">Continue on WhatsApp</button>
+
+
+    </form>
+</div>
+
+<script>
+(() => {
+    const form = document.getElementById("business-form");
+    const params = new URLSearchParams(window.location.search);
+    const requestedService = params.get("service");
+    if (requestedService) {
+        const normalized = requestedService.trim().toLowerCase();
+        const serviceCheckboxes = document.querySelectorAll('input[name="services"]');
+        let found = false;
+        serviceCheckboxes.forEach((checkbox) => {
+            if (checkbox.value.trim().toLowerCase() === normalized) {
+                checkbox.checked = true;
+                found = true;
+            }
+        });
+
+        if (found) {
+            document.getElementById("service-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }
+
+    form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const selectedServices = [...document.querySelectorAll('input[name="services"]:checked')].map((checkbox) => checkbox.value).join(", ");
+        const message = [
+            "Hi, I want help with business registration/compliance.",
+            `Business Name: ${data.get("business_name") || ""}`,
+            `Business Type: ${data.get("business_type") || ""}`,
+            `Services: ${selectedServices || "Not selected"}`,
+            `Owner / Authorized Person: ${data.get("owner_name") || ""}`,
+            `Email: ${data.get("email") || ""}`,
+            `Phone: ${data.get("phone") || ""}`,
+            `City: ${data.get("city") || ""}`
+        ].join("\n");
+        window.open(`https://wa.me/919676359019?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    });
+})();
+</script>
+
+</body>
+</html>
