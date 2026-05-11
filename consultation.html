@@ -133,9 +133,13 @@
               <option>Project Reports for Loans</option>
             </select>
           </div>
-          <div class="field full">
+          <div class="field">
+            <label>Preferred Callback Date</label>
+            <input type="date" name="preferred_date" id="preferred-date">
+          </div>
+          <div class="field">
             <label>Preferred Callback Time</label>
-            <input type="text" name="preferred_time" placeholder="Example: Tomorrow 11:00 AM">
+            <input type="time" name="preferred_time" id="preferred-time">
           </div>
           <div class="field full">
             <label>Message</label>
@@ -150,20 +154,28 @@
   <script>
     (() => {
       const form = document.getElementById("consultation-form");
+      const preferredDateInput = document.getElementById("preferred-date");
       if (!form) return;
+
+      if (preferredDateInput) {
+        preferredDateInput.min = new Date().toISOString().split("T")[0];
+      }
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
         const data = new FormData(form);
         const service = data.get("service") || "Consultation";
+        const preferredDate = data.get("preferred_date") || "";
+        const preferredTime = data.get("preferred_time") || "";
+        const callbackSlot = [preferredDate, preferredTime].filter(Boolean).join(" ");
         const details = [
           "Hi, I want to book a consultation with SV Accountax Crew.",
           `Name: ${data.get("name") || ""}`,
           `Phone: ${data.get("phone") || ""}`,
           `Email: ${data.get("email") || ""}`,
           `Service Needed: ${service}`,
-          `Preferred Callback Time: ${data.get("preferred_time") || ""}`,
+          `Preferred Callback Slot: ${callbackSlot}`,
           `Message: ${data.get("message") || ""}`
         ].join("\n");
 
